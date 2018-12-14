@@ -1,0 +1,23 @@
+{
+  "name": "hou-music-player",
+  "version": "1.0.0",
+  "description": "react music player",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/houxiangr/hou-music-player.git"
+  },
+  "keywords": [
+    "music",
+    "player"
+  ],
+  "author": "houxiang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/houxiangr/hou-music-player/issues"
+  },
+  "homepage": "https://github.com/houxiangr/hou-music-player#readme"
+}
