@@ -5,25 +5,34 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	entry: [
+	entry: {
 	    // webpack-dev-server的入口配置
-        'webpack-dev-server/client?http://localhost:3000',
+        main: ['webpack-dev-server/client?http://localhost:3000',
         // 热更新的入口配置
         'webpack/hot/only-dev-server',
-        'react-hot-loader/patch',
-        //代码入口配置
-        path.join(__dirname, 'app', 'index.js')
-    ],
+        'react-hot-loader/patch'],
+        //代码入口配置,可以配置多个
+        index: path.join(__dirname, 'app', 'index.js'),
+        index2: path.join(__dirname, 'app', 'index2.js')
+    },
 	output: {
-		path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'dist'),
 		filename: '[name].js',
         publicPath: '/'
 	},
     plugins: [
+        // 配置多个
         new HtmlWebpackPlugin({
             template: './app/index.tpl.html',
             inject: 'body',
-            filename: './index.html'
+            filename: './index.html',
+            chunks:["main","index"]
+        }),
+        new HtmlWebpackPlugin({
+            template: './app/index.tpl.html',
+            inject: 'body',
+            filename: './index2.html',
+            chunks:["main","index2"]
         }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
@@ -33,6 +42,9 @@ module.exports = {
         })
     ],
 	mode: 'development',
+    devServer: {
+        contentBase: path.join(__dirname, "dist")
+    },
     resolve: {
         extensions: ['.js','.jsx','.json']
     },
