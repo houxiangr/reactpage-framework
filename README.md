@@ -1,5 +1,5 @@
 # react-base-framework
-基于react16搭建的简单的开发环境
+基于react16搭建的简单的单页面开发环境
 
 首先运行npm install下载依赖
 
