@@ -6,14 +6,17 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: {
-	    // webpack-dev-server的入口配置
-        main: ['webpack-dev-server/client?http://localhost:3000',
-        // 热更新的入口配置
-        'webpack/hot/only-dev-server',
-        'react-hot-loader/patch'],
         //代码入口配置,可以配置多个
-        index: path.join(__dirname, 'app', 'index.js'),
-        index2: path.join(__dirname, 'app', 'index2.js')
+        index: ['webpack-dev-server/client?http://localhost:3000',
+            // 热更新的入口配置
+            'webpack/hot/only-dev-server',
+            'react-hot-loader/patch',
+            path.join(__dirname, 'app', 'index.js')],
+        index2:['webpack-dev-server/client?http://localhost:3000',
+            // 热更新的入口配置
+            'webpack/hot/only-dev-server',
+            'react-hot-loader/patch',
+            path.join(__dirname, 'app', 'index2.js')]
     },
 	output: {
         path: path.join(__dirname, 'dist'),
@@ -26,13 +29,13 @@ module.exports = {
             template: './app/index.tpl.html',
             inject: 'body',
             filename: './index.html',
-            chunks:["main","index"]
+            chunks:["index"]
         }),
         new HtmlWebpackPlugin({
             template: './app/index.tpl.html',
             inject: 'body',
             filename: './index2.html',
-            chunks:["main","index2"]
+            chunks:["index2"]
         }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
